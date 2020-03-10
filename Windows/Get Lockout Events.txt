@@ -1,0 +1,6 @@
+$StartTime = (get-date).AddMinutes(-60)
+Get-WinEvent -FilterHashtable @{LogName='Security';Id=4740;StartTime=$StartTime} |
+    Where-Object {$_.Properties[0].Value -like "*"} |
+    Select-Object -Property TimeCreated, 
+        @{Label='UserName';Expression={$_.Properties[0].Value}},
+        @{Label='ComputerName';Expression={$_.Properties[1].Value}} | Group-Object ComputerName

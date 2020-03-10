@@ -1,0 +1,3 @@
+Get-VMHost | Select Name,
+    @{N='Serial';E={(Get-EsxCli -VMHost $_).hardware.platform.get().SerialNumber}} 
+
