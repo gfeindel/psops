@@ -5,6 +5,7 @@ Useful to log ping data to diagnose difficult network issues.
 #>
 
 param(
+    [parameter(Mandatory)]
     $Destination,
     $LogFile="$env:temp\monitor-latency.log",
     $Timeout=1000
